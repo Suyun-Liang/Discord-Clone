@@ -4,7 +4,7 @@ import { NextApiResponseServerIo } from "@/types";
 import { error } from "console";
 import { NextApiRequest } from "next";
 
-// to send messages to db and web spcket
+// to send messages to db and web socket
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponseServerIo
