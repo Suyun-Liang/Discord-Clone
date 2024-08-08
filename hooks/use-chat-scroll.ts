@@ -8,6 +8,7 @@ type chatScrollProps = {
   count: number;
 };
 
+// scroll  to the top to fetch the previous message
 export const useChatScroll = ({
   chatRef,
   bottomRef,
