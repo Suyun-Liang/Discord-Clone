@@ -24,12 +24,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
+
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
+import { DEFAULT_SERVER_AVATAR } from "@/lib/constants";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Server name is required." }),
-  imageUrl: z.string().min(1, { message: "Server image is required." }),
+  imageUrl: z.string().optional(),
 });
 
 export const CreateServerModal = () => {
@@ -47,6 +49,8 @@ export const CreateServerModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      if (!values.imageUrl) values.imageUrl = DEFAULT_SERVER_AVATAR;
+
       await axios.post("/api/servers", values);
 
       form.reset();
@@ -90,6 +94,7 @@ export const CreateServerModal = () => {
                           onChange={field.onChange}
                         />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
