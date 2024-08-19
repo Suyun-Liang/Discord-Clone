@@ -17,7 +17,7 @@ export default async function handler(
     const { content, fileUrl } = req.body;
     const { conversationId } = req.query;
 
-    // validations: serverId,channelId,profileId and message content are required
+    // validations: conversationId,profileId and message content are required
     if (!profile) return res.status(401).json({ error: "Unauthorized" });
     if (!conversationId)
       return res.status(400).json({ error: "Conversation ID Missing" });
